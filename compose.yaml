@@ -1,0 +1,26 @@
+# Kullanım
+#   Geliştirme:  docker compose up --build            → http://localhost:5173
+#   Yayın:       docker compose --profile yayin up --build yayin   → http://localhost:8080
+#   Durdurma:    docker compose down
+
+services:
+  gelistirme:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      # Proje klasörünüz konteynerdeki /app'in üzerine bağlanır: değişiklikler anında yansır.
+      - .:/app
+      # node_modules konteynerin kendi kopyası olarak kalır; bilgisayarınızdaki (varsa)
+      # Windows/macOS node_modules'ü Linux konteynerinde çalışmaz.
+      - /app/node_modules
+    environment:
+      WATCH_POLLING: "true"
+
+  yayin:
+    build: .
+    ports:
+      - "8080:80"
+    profiles: ["yayin"]

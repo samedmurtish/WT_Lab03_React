@@ -1,0 +1,18 @@
+# Geliştirme imajı: Vite geliştirme sunucusunu konteynerde çalıştırır.
+# Kaynak kod imaja kopyalanır ama compose.yaml çalışırken klasörünüzü üzerine bağlar,
+# böylece bilgisayarınızda yaptığınız değişiklikler konteynere anında yansır.
+FROM node:24-alpine
+
+WORKDIR /app
+
+# Önce yalnızca paket dosyaları: bağımlılıklar değişmedikçe bu katman önbellekten gelir.
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . .
+
+EXPOSE 5173
+
+# --host 0.0.0.0: Vite varsayılan olarak yalnızca konteynerin içinden erişilebilir;
+# bu seçenek bilgisayarınızın tarayıcısından erişmeyi sağlar.
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

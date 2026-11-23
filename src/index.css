@@ -1,0 +1,82 @@
+/* Laboratuvar 3 · hazır stil dosyası. Bu dosyada değişiklik yapmanız gerekmez. */
+:root {
+  --zemin: #f5f3ee;
+  --yuzey: #fcfbf8;
+  --metin: #13202b;
+  --soluk: #4a5866;
+  --cizgi: #d9d3c6;
+  --vurgu: #1a5fb4;
+  --vurgu-acik: #e6effa;
+  --kirmizi: #b42318;
+  font-family: Inter, system-ui, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  color: var(--metin);
+  background: var(--zemin);
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input { font: inherit; }
+button {
+  cursor: pointer;
+  border: 1px solid var(--cizgi);
+  background: var(--yuzey);
+  color: var(--metin);
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+}
+button:hover:not(:disabled) { border-color: var(--vurgu); }
+button:disabled { cursor: not-allowed; opacity: 0.5; }
+button.birincil { background: var(--vurgu); border-color: var(--vurgu); color: #fff; }
+button[aria-pressed='true'] { background: var(--metin); border-color: var(--metin); color: #fff; }
+:focus-visible { outline: 3px solid var(--vurgu); outline-offset: 2px; }
+
+.kutu {
+  max-width: 640px;
+  margin: 2.5rem auto;
+  padding: 0 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.ust-kas { margin: 0; color: var(--vurgu); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; }
+.ust h1 { margin: 0.2rem 0 0; font-size: clamp(1.8rem, 1.2rem + 2vw, 2.4rem); }
+.ozet { margin: 0.2rem 0 0; color: var(--soluk); }
+
+.ekle { display: flex; gap: 0.5rem; }
+.ekle input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--cizgi);
+  border-radius: 8px;
+  background: #fff;
+}
+.filtre { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--cizgi);
+  border-radius: 12px;
+  background: var(--yuzey);
+  overflow: hidden;
+}
+.oge { display: flex; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; }
+.oge + .oge { border-top: 1px solid var(--cizgi); }
+.oge input[type='checkbox'] { width: 1.15rem; height: 1.15rem; accent-color: var(--vurgu); flex-shrink: 0; }
+.oge .metin { flex: 1; overflow-wrap: anywhere; }
+.oge.tamam .metin { text-decoration: line-through; color: var(--soluk); }
+.oge .duzenle { flex: 1; min-width: 0; padding: 0.3rem 0.5rem; border: 1px solid var(--vurgu); border-radius: 6px; }
+.oge .sil { padding: 0.25rem 0.7rem; font-size: 0.9rem; color: var(--kirmizi); }
+
+.bos {
+  margin: 0;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--soluk);
+  border: 1px dashed var(--cizgi);
+  border-radius: 12px;
+  background: var(--yuzey);
+}
+.alt { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; }
